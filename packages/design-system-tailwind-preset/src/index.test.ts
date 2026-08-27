@@ -1,3 +1,6 @@
+import defaultTheme from 'tailwindcss/defaultTheme';
+
+import { borderRadius } from './border-radius';
 import { colors } from './colors';
 import { shadows } from './shadows';
 
@@ -90,6 +93,29 @@ describe('Tailwind Preset', () => {
     expect(tailwindConfig.theme?.extend?.boxShadow).toStrictEqual(
       expect.objectContaining(shadows),
     );
+  });
+
+  /**
+   * Border radius
+   */
+
+  it('borderRadius extends the default Tailwind scale rather than replacing it', () => {
+    expect(tailwindConfig.theme?.extend?.borderRadius).toStrictEqual(
+      borderRadius,
+    );
+    expect(tailwindConfig.theme).not.toHaveProperty('borderRadius');
+  });
+
+  it('only overlaps the default Tailwind radius names on full', () => {
+    const defaultNames = ['none', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'full'];
+
+    expect(
+      Object.keys(borderRadius).filter((token) => defaultNames.includes(token)),
+    ).toStrictEqual(['full']);
+  });
+
+  it('resolves full to the same value Tailwind already used', () => {
+    expect(defaultTheme.borderRadius?.full).toBe('9999px');
   });
 
   /**

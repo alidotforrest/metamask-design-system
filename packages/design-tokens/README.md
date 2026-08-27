@@ -63,6 +63,40 @@ const createStyles = (theme) =>
   });
 ```
 
+### Corner radius
+
+Radii do not change between themes, so they are exported on their own rather
+than through `lightTheme` / `darkTheme`.
+
+| Token               | CSS variable    | Value  |
+| ------------------- | --------------- | ------ |
+| `borderRadius.off`  | `--radius-off`  | 0      |
+| `borderRadius[2]`   | `--radius-2`    | 2px    |
+| `borderRadius[4]`   | `--radius-4`    | 4px    |
+| `borderRadius[6]`   | `--radius-6`    | 6px    |
+| `borderRadius[8]`   | `--radius-8`    | 8px    |
+| `borderRadius[10]`  | `--radius-10`   | 10px   |
+| `borderRadius[12]`  | `--radius-12`   | 12px   |
+| `borderRadius[16]`  | `--radius-16`   | 16px   |
+| `borderRadius[24]`  | `--radius-24`   | 24px   |
+| `borderRadius.full` | `--radius-full` | 9999px |
+
+Use `borderRadius.full` for circles and capsules: a radius larger than half the
+shortest side rounds the shape fully, which is why there is no step between 24
+and full.
+
+```js
+import { borderRadius } from '@metamask/design-tokens';
+
+StyleSheet.create({
+  card: { borderRadius: borderRadius[8] },
+  avatar: { borderRadius: borderRadius.full },
+});
+```
+
+Both Tailwind presets expose the same scale as `rounded-*` utilities
+(`rounded-8`, `rounded-full`, …).
+
 ## Tooling
 
 To prevent color tech debt and ensure themability, accessibility, and consistency of the MetaMask brand, we recommend using [@metamask/eslint-plugin-design-tokens](https://github.com/MetaMask/eslint-plugin-design-tokens). This ESLint plugin helps enforce the usage of design tokens in your codebase.

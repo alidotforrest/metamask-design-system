@@ -31,12 +31,50 @@ const variantClassGroups = [
   'l-amount-display-lg',
 ];
 
+// Mirrors the radius token names from `@metamask/design-tokens`.
+// Inlined to avoid a workspace dependency cycle (design-tokens → design-system-react).
+const borderRadiusScale = [
+  'off',
+  '2',
+  '4',
+  '6',
+  '8',
+  '10',
+  '12',
+  '16',
+  '24',
+  'full',
+];
+
+// Tailwind Merge keys border radius by corner, so every corner group needs the
+// scale or `rounded-8 rounded-12` would resolve to both classes at once.
+const borderRadiusClassGroups = Object.fromEntries(
+  [
+    'rounded',
+    'rounded-s',
+    'rounded-e',
+    'rounded-t',
+    'rounded-r',
+    'rounded-b',
+    'rounded-l',
+    'rounded-ss',
+    'rounded-se',
+    'rounded-ee',
+    'rounded-es',
+    'rounded-tl',
+    'rounded-tr',
+    'rounded-br',
+    'rounded-bl',
+  ].map((group) => [group, [{ [group]: borderRadiusScale }]]),
+);
+
 /**
  * Custom Tailwind Merge configuration to handle our design system's typography classes.
  * This extends the default Tailwind Merge behavior to properly handle conflicts between:
  * 1. Custom text color classes (text-default, text-alternative, text-muted)
  * 2. Typography variant classes for font sizes (e.g., s-body-md, l-heading-lg)
  * 3. Standard and custom font weight classes
+ * 4. Radius token classes (e.g., rounded-8, rounded-full)
  *
  * Without this configuration, Tailwind Merge wouldn't know these classes are meant
  * to override each other, potentially leading to multiple conflicting classes
@@ -45,6 +83,7 @@ const variantClassGroups = [
 export const twMerge = extendTailwindMerge({
   extend: {
     classGroups: {
+      ...borderRadiusClassGroups,
       'text-color': ['text-default', 'text-alternative', 'text-muted'],
       'font-size': [
         {

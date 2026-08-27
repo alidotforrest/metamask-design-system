@@ -31,13 +31,29 @@ module.exports = {
 ```
 
 ```html
-<div class="bg-default text-default">
+<div class="bg-default text-default rounded-8">
   <h1 class="font-s-heading-lg sm:font-l-heading-lg">Welcome to MetaMask</h1>
   <p class="font-s-body-md sm:font-l-body">
     Enjoy our consistent design across projects!
   </p>
 </div>
 ```
+
+### Corner radius
+
+Radius tokens are added alongside Tailwind's default `borderRadius` scale, so
+`rounded-lg` and the other stock names still work while projects migrate. Prefer
+the MetaMask tokens in new code — the defaults are intended to be removed once
+consumers have moved across:
+
+`rounded-off` (0), `rounded-2`, `rounded-4`, `rounded-6`, `rounded-8`,
+`rounded-10`, `rounded-12`, `rounded-16`, `rounded-24`, `rounded-full`.
+
+Corner-specific variants work as usual: `rounded-t-24`, `rounded-tl-2`.
+
+Use `rounded-full` for circles and capsules — a radius larger than half the
+shortest side rounds the shape fully, so there is no step between `rounded-24`
+and `rounded-full`.
 
 ## Customization
 
