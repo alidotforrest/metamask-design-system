@@ -80,7 +80,7 @@ export const Jazzicon = ({
   return (
     <div
       ref={containerRef}
-      className={twMerge('flex [&>div]:!rounded-none', className)}
+      className={twMerge('flex [&>div]:!rounded-off', className)}
       {...props}
     />
   );

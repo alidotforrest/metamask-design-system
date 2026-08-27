@@ -17,7 +17,7 @@ describe('TextButton', () => {
       'px-0',
       'h-auto',
       'bg-transparent',
-      'rounded-none',
+      'rounded-off',
     );
   });
 

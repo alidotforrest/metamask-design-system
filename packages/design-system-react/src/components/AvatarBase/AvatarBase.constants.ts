@@ -26,11 +26,11 @@ export const TWCLASSMAP_AVATARBASE_SIZE_BORDERRADIUSS_SQUARE: Record<
   AvatarBaseSize,
   string
 > = {
-  [AvatarBaseSize.Xs]: 'rounded-sm', // 4px
-  [AvatarBaseSize.Sm]: 'rounded-md', // 6px
-  [AvatarBaseSize.Md]: 'rounded-lg', // 8px
-  [AvatarBaseSize.Lg]: 'rounded-[10px]', // 10px (No tailwind class for this)
-  [AvatarBaseSize.Xl]: 'rounded-xl', // 12px
+  [AvatarBaseSize.Xs]: 'rounded-2',
+  [AvatarBaseSize.Sm]: 'rounded-6',
+  [AvatarBaseSize.Md]: 'rounded-8',
+  [AvatarBaseSize.Lg]: 'rounded-10',
+  [AvatarBaseSize.Xl]: 'rounded-12',
 };
 
 export const TWCLASSMAP_AVATARBASE_SIZE_BORDER: Record<AvatarBaseSize, string> =
