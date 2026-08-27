@@ -93,9 +93,9 @@ Component styling using design tokens, Tailwind CSS (web), and TWRNC (React Nati
 
 ### Corner Radius
 
-- **ALWAYS** use MetaMask radius tokens. Tailwind's default names (`rounded-lg`,
-  `rounded-full`, …) still resolve while consumers migrate, but they are on the
-  way out and must not be used in new code.
+Both presets replace Tailwind's default `borderRadius` scale, so `rounded-lg`
+and the rest of the stock names resolve to nothing. Use the MetaMask radius
+tokens instead:
 
 | Class          | Value  |
 | -------------- | ------ |

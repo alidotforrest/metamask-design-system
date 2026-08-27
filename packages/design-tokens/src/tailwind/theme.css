@@ -9,6 +9,7 @@
   --font-sans: var(--font-family-default);
   --color-*: initial;
   --shadow-*: initial;
+  --radius-*: initial;
 
   --color-inherit: inherit;
   --color-current: currentColor;
@@ -188,8 +189,8 @@
   --shadow-md: 0 2px 16px 0 #0000001a;
   --shadow-lg: 0 2px 40px 0 #0000001a;
 
-  /* Corner radius. Added alongside Tailwind's default scale so consumers can
-  adopt these tokens without a coordinated rename. */
+  /* Corner radius. The default Tailwind scale is reset above so only these
+  MetaMask tokens generate `rounded-*` utilities. */
   --radius-off: 0px;
   --radius-2: 2px;
   --radius-4: 4px;

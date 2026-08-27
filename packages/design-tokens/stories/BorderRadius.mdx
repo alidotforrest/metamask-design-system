@@ -7,10 +7,9 @@ Corner radius tokens name their own value, so `rounded-8` is 8px. The two
 bookends are named instead: `rounded-off` removes rounding, and `rounded-full`
 rounds a shape fully.
 
-Both Tailwind presets add these tokens alongside Tailwind's default
-`borderRadius` scale, so `rounded-lg` and the other stock names still work while
-projects migrate. Prefer the tokens in new code — the defaults are intended to
-be removed once consumers have moved across.
+Both Tailwind presets replace Tailwind's default `borderRadius` scale with these
+tokens, so `rounded-lg` and the other stock names produce nothing. `rounded-full`
+survives because it is one of these tokens.
 
 <Canvas of={BorderRadiusStories.DefaultStory} />
 
@@ -184,8 +183,8 @@ be removed once consumers have moved across.
 
 ## Migrating from the default Tailwind names
 
-Each default name maps to exactly one token at the same value, so moving across
-is a rename with no visual change.
+The default names no longer generate anything. Each maps to exactly one token at
+the same value, so moving across is a rename with no visual change.
 
 | Before           | After          |
 | ---------------- | -------------- |

@@ -99,11 +99,15 @@ describe('Tailwind Preset', () => {
    * Border radius
    */
 
-  it('borderRadius extends the default Tailwind scale rather than replacing it', () => {
-    expect(tailwindConfig.theme?.extend?.borderRadius).toStrictEqual(
-      borderRadius,
-    );
-    expect(tailwindConfig.theme).not.toHaveProperty('borderRadius');
+  it('borderRadius overrides the default Tailwind scale instead of extending it', () => {
+    expect(tailwindConfig.theme?.borderRadius).toStrictEqual(borderRadius);
+    expect(tailwindConfig.theme?.extend).not.toHaveProperty('borderRadius');
+  });
+
+  it('drops the default Tailwind radius names but keeps full', () => {
+    expect(tailwindConfig.theme?.borderRadius).not.toHaveProperty('lg');
+    expect(tailwindConfig.theme?.borderRadius).not.toHaveProperty('none');
+    expect(tailwindConfig.theme?.borderRadius).toHaveProperty('full');
   });
 
   it('only overlaps the default Tailwind radius names on full', () => {

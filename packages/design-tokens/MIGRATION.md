@@ -2,6 +2,7 @@
 
 This guide provides detailed instructions for migrating your project from one version of the `@metamask/design-tokens` to another.
 
+- [From version 10.x to 11.0.0](#from-version-10x-to-1100)
 - [From version 9.x to 10.0.0](#from-version-9x-to-1000)
 - [From version 8.x to 9.0.0](#from-version-8x-to-900)
 - [Tailwind CSS v3 to v4](#tailwind-css-v3-to-v4)
@@ -12,6 +13,59 @@ This guide provides detailed instructions for migrating your project from one ve
 - [From version 4.1.0 to 5.0.0](#from-version-410-to-500)
 - [From version 3.0.0 to 4.0.0](#from-version-300-to-400)
 - [From version 2.1.1 to 3.0.0](#from-version-211-to-300)
+
+## From version 10.x to 11.0.0
+
+Corner radius is now a design token domain. `@metamask/design-tokens` owns the
+scale, and both Tailwind presets replace Tailwind's default `borderRadius`
+scale with it rather than extending it.
+
+### What changed
+
+**Added:**
+
+- `BorderRadius` and `borderRadius` JS exports
+- `--radius-*` CSS variables in `styles.css` and the Tailwind v4 `@theme`
+
+**Breaking:**
+
+- Tailwind's default radius names no longer generate utilities. `rounded-lg`,
+  `rounded-sm`, bare `rounded`, and the rest produce no style.
+- `rounded-full` is unaffected: it is a radius token in its own right, at the
+  same 9999px value Tailwind gave it.
+
+### Migration
+
+| Before           | After         | Value |
+| ---------------- | ------------- | ----- |
+| `rounded-none`   | `rounded-off` | 0     |
+| `rounded-sm`     | `rounded-2`   | 2px   |
+| `rounded`        | `rounded-4`   | 4px   |
+| `rounded-md`     | `rounded-6`   | 6px   |
+| `rounded-lg`     | `rounded-8`   | 8px   |
+| `rounded-[10px]` | `rounded-10`  | 10px  |
+| `rounded-xl`     | `rounded-12`  | 12px  |
+| `rounded-2xl`    | `rounded-16`  | 16px  |
+| `rounded-3xl`    | `rounded-24`  | 24px  |
+
+Corner-specific variants follow the same rename: `rounded-t-3xl` becomes
+`rounded-t-24`.
+
+Radii that do not land on the scale need a decision rather than a rename. Round
+to the nearest token, or use `rounded-full` when the intent was a circle or a
+capsule. There is no step between `rounded-24` and `rounded-full`.
+
+```tsx
+// Before
+<div className="rounded-lg" />;
+const styles = { borderRadius: 8 };
+
+// After
+import { borderRadius } from '@metamask/design-tokens';
+
+<div className="rounded-8" />;
+const styles = { borderRadius: borderRadius[8] };
+```
 
 ## From version 9.x to 10.0.0
 

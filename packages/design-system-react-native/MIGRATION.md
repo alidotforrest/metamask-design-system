@@ -4,6 +4,7 @@ This guide provides detailed instructions for migrating your project from one ve
 
 ## Table of Contents
 
+- [From version 0.42.0 to 0.43.0](#from-version-0420-to-0430)
 - [From version 0.41.0 to 0.42.0](#from-version-0410-to-0420)
 - [From version 0.37.0 to 0.38.0](#from-version-0370-to-0380)
 - [From version 0.36.0 to 0.37.0](#from-version-0360-to-0370)
@@ -71,6 +72,60 @@ This guide provides detailed instructions for migrating your project from one ve
   - [From version 0.1.0 to 0.2.0](#from-version-010-to-020)
 
 ## Version Updates
+
+### From version 0.42.0 to 0.43.0
+
+<a id="from-version-0420-to-0430"></a>
+
+#### Tailwind radius classes replaced by MetaMask radius tokens
+
+**What changed:**
+
+`@metamask/design-system-twrnc-preset` now owns the `borderRadius` scale instead
+of extending Tailwind's. The default names no longer resolve to a style, so
+`rounded-lg`, `rounded-2xl` and the rest return `{}`. Radii are now MetaMask
+tokens that name their own value.
+
+`rounded-full` is the exception: it is a radius token in its own right, at the
+same 9999px value, so existing usage keeps working.
+
+**Migration:**
+
+Rename every radius class. The rendered values are unchanged, so this is a
+find-and-replace with no visual difference:
+
+| Before           | After         | Value |
+| ---------------- | ------------- | ----- |
+| `rounded-none`   | `rounded-off` | 0     |
+| `rounded-sm`     | `rounded-2`   | 2px   |
+| `rounded`        | `rounded-4`   | 4px   |
+| `rounded-md`     | `rounded-6`   | 6px   |
+| `rounded-lg`     | `rounded-8`   | 8px   |
+| `rounded-[10px]` | `rounded-10`  | 10px  |
+| `rounded-xl`     | `rounded-12`  | 12px  |
+| `rounded-2xl`    | `rounded-16`  | 16px  |
+| `rounded-3xl`    | `rounded-24`  | 24px  |
+
+Corner-specific variants follow the same rename: `rounded-t-3xl` becomes
+`rounded-t-24`.
+
+Radii that do not land on the scale need a decision rather than a rename. Round
+to the nearest token, or use `rounded-full` when the intent was a circle or a
+capsule. There is no step between `rounded-24` and `rounded-full`.
+
+`StyleSheet` styles cannot use classes, so import the values instead of
+hardcoding them:
+
+```tsx
+import { borderRadius } from '@metamask/design-tokens';
+
+const styles = StyleSheet.create({
+  card: { borderRadius: borderRadius[8] },
+});
+```
+
+Radius class names in the per-component sections above predate this change; use
+the table here to translate them.
 
 ### From version 0.41.0 to 0.42.0
 

@@ -107,12 +107,9 @@ export const generateTailwindConfig = (theme: Theme): TwConfig => {
       lineHeight: {
         ...typographyTailwindConfig.lineHeight,
       },
-      extend: {
-        // Added alongside the default Tailwind radius scale so consumers can
-        // adopt radius tokens without a coordinated rename.
-        borderRadius: {
-          ...borderRadiusTailwindConfig,
-        },
+      // Replaces the default Tailwind radius scale with MetaMask radius tokens.
+      borderRadius: {
+        ...borderRadiusTailwindConfig,
       },
     },
   };

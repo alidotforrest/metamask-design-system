@@ -41,10 +41,8 @@ module.exports = {
 
 ### Corner radius
 
-Radius tokens are added alongside Tailwind's default `borderRadius` scale, so
-`rounded-lg` and the other stock names still work while projects migrate. Prefer
-the MetaMask tokens in new code — the defaults are intended to be removed once
-consumers have moved across:
+The preset replaces Tailwind's default `borderRadius` scale, so `rounded-lg` and
+the other stock names produce no CSS. Use the MetaMask radius tokens instead:
 
 `rounded-off` (0), `rounded-2`, `rounded-4`, `rounded-6`, `rounded-8`,
 `rounded-10`, `rounded-12`, `rounded-16`, `rounded-24`, `rounded-full`.

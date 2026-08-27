@@ -28,9 +28,9 @@ describe('Border radius utilities', () => {
   // `full` is absent because it is a radius token in its own right, so it
   // outlives the rest of the default scale.
   it.each(['none', 'sm', 'md', 'lg', 'xl', '2xl', '3xl'])(
-    'still resolves the default Tailwind class rounded-%s while consumers migrate',
+    'no longer resolves the default Tailwind class rounded-%s',
     (legacySize) => {
-      expect(tw.style(`rounded-${legacySize}`)).toHaveProperty('borderRadius');
+      expect(tw.style(`rounded-${legacySize}`)).toStrictEqual({});
     },
   );
 });

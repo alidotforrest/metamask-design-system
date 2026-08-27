@@ -8,8 +8,10 @@ import { typography } from './typography';
 const tailwindConfig: Config = {
   content: [],
   theme: {
+    // Overrides rather than extends, so the default Tailwind radius scale
+    // (rounded-lg, rounded-2xl, …) is replaced by MetaMask radius tokens.
+    borderRadius,
     extend: {
-      borderRadius,
       colors: {
         ...colors,
       },
